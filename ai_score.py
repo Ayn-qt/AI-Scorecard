@@ -490,7 +490,8 @@ def main():
         placeholder="Describe a complex ethical dilemma with multiple stakeholders and considerations..."
     )
     
-    if st.button("🔍 Perform Enhanced Analysis", type="primary") and scenario.strip():
+    # FIXED: Added unique key to prevent duplicate element ID error
+    if st.button("🔍 Perform Enhanced Analysis", type="primary", key="enhanced_analysis_button") and scenario.strip():
         with st.spinner("Conducting advanced ethical analysis across multiple dimensions..."):
             results = analyzer.generate_enhanced_report(scenario)
         
@@ -565,8 +566,10 @@ def main():
             
             st.dataframe(framework_df, use_container_width=True)
     
-    elif st.button("🔍 Perform Enhanced Analysis", type="primary"):
-        st.warning("Please enter a scenario to analyze.")
+    # FIXED: Removed the duplicate button and added a warning for empty scenario
+    elif scenario.strip() == "":
+        if st.button("🔍 Perform Enhanced Analysis", type="primary", key="enhanced_analysis_button_empty"):
+            st.warning("Please enter a scenario to analyze.")
     
     # Enhanced footer with methodology
     st.markdown("---")
