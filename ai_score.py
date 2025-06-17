@@ -567,9 +567,7 @@ def main():
             st.dataframe(framework_df, use_container_width=True)
     
     # FIXED: Removed the duplicate button and added a warning for empty scenario
-    elif scenario.strip() == "":
-        if st.button("🔍 Perform Enhanced Analysis", type="primary", key="enhanced_analysis_button_empty"):
-            st.warning("Please enter a scenario to analyze.")
+
     
     # Enhanced footer with methodology
     st.markdown("---")
